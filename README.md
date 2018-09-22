@@ -2,17 +2,18 @@
 Using scipy and pygame to create an audio visualiser which uses multiple fast fourier transforms to visualise an audio file.
 
 <b>Dependencies</b>:<ol>
-<li>Python 3.7+</li>
-<li>Scipy</li>
-<li>Pygame</li>
+  <li>Python 3.7+</li>
+  <li>Scipy</li>
+  <li>Pygame</li>
+  <li>Pathlib</li>
 </ol>
 
 Python 3.7+ can be installed from <pre> https://www.python.org/downloads </pre>
 
 Scipy and Pygame can be installed using pip in the terminal (after downloading python 3.7+)
-<pre> pip install scipy pygame</pre>
+<pre> pip install scipy pygame pathlib</pre>
 
-This program has only been tested on windows thus far
+Note: the GUI and exe version only works on windows OS (the console can work on linux and OSX)
 
 # Getting Started
 AudioVisualiserGUI.pyw allows for GUI file name input (unfortunately does not support copy and paste)<br>
