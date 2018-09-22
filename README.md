@@ -22,3 +22,7 @@ File path is written relative to the songs_file <br>(which defaults as '' meanin
 
 AudioVisualiserGUI.pyw allows for GUI file name input (unfortunately does not support copy and paste)
 AudioVisualiserConsole.py uses a command line for name input 
+
+<b>NOTE: Python only accepts sound files encoded in .wav format</b><br>
+One can use the conole lame.exe application to convert mp3 files to wav files using the following command in the terminal
+<pre> lame.exe some_mp3.mp3 some_wav.wav</pre>
