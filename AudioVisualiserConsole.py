@@ -6,11 +6,13 @@ import time
 import pygame
 
 #music_file_name = r""
-songs_file = ""
+songs_file = ''
 music_file_name = input("Song Title: ")
 if music_file_name[len(music_file_name)-4:] != '.wav':
     music_file_name += '.wav'
-music_file_name = songs_file + "//" + music_file_name
+
+if songs_file != '':
+    music_file_name = songs_file + "//" + music_file_name
 
 percentage_displayed_f = 0.9
 screen_w = 1000
@@ -25,10 +27,10 @@ except:
     raise Exception('Sound file does not exist within songs file')
 
 print("Found File")
-#print("Stereo to Mono Conversion")
+print("Stereo to Mono Conversion")
 music = scipy.mean(original_signal, axis=1)                                                                 #Combining both ears (computationally intensive)
 
-#print('Fourier Transform')                                                                                 #f, t are axis, Sxx is 2d array
+print('Fourier Transform')                                                                                 #f, t are axis, Sxx is 2d array
 f, t, Sxx = scipy.signal.spectrogram(music, sr,nperseg=fftlength)                                           #Sxx[frequency][time]
 no_of_displayed_f = int(len(f)*percentage_displayed_f+0.5)
 Sxx = Sxx[:no_of_displayed_f-2].transpose()                                                                 #Sxx[time][frequency] Last Frequency at 10163.671875
