@@ -26,7 +26,7 @@ AudioVisualiserGUI.pyw
 AudioVisualiserGUI.exe 
 <ul>
   <li>Available in the release</li>
-  <li>Can be used without the required dependencies</li>
+  <li>Can be used without the required dependencies (apart from lame.exe for mp3 input)</li>
   <li>Doesn't allow customisation of variables :( </li>
  </ul>
  
