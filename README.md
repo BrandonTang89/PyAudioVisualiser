@@ -7,7 +7,7 @@ Using scipy and pygame to create an audio visualiser which uses multiple fast fo
 <li>Pygame</li>
 </ol>
 
-The first 5 variables can be edited to suit your viewing experience.
+The first 6 variables can be edited to suit your viewing experience.
 <pre>
 songs_file                   #Directory To Search For Songs :) [the path finding is relative to this]
 screen_w                     #Screen Width
