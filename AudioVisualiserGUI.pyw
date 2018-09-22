@@ -13,7 +13,7 @@ screen_h = 900
 percentage_displayed_f = 0.7        #Percentage of frequencies to show (Removes higher frequencies) Range = [0, 1]
 max_height_percentile = 99.85       #Pecentile of amplitude that fills the entire height of screen Range = (0, 100]
 fftlength = 2048                    #Number of samples per DFT (better to be a power of 2) (higher: > frequency resolution, < time resolution)
-entertainment = True               #Just for aesthetics, centers the lowest frequencies in the centers and higher ones at the end then wraps around
+entertainment = False               #Just for aesthetics, centers the lowest frequencies in the centers and higher ones at the end then wraps around
 
 
 class InputBox:                                                                                             #Class for Input Box
