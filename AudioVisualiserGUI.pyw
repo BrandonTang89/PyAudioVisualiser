@@ -29,15 +29,12 @@ class InputBox:                                                                 
             # If the user clicked on the input_box rect.
             if self.rect.collidepoint(event.pos):
                 # Toggle the active variable.
-                self.active = not self.active
+                self.active = True
+                self.color = COLOR_ACTIVE
                 if self.text == 'Enter Music File Path':
                     self.text = ''
                 
-            else:
-                self.active = False
-                
             # Change the current color of the input box.
-            self.color = COLOR_ACTIVE if self.active else COLOR_INACTIVE
         if event.type == pygame.KEYDOWN:
             if self.active:
                 if event.key == pygame.K_RETURN:
@@ -108,7 +105,7 @@ instruction_rect = instruction.get_rect(center=(screen_w/2, 2*screen_h/5))
 del_x = myfont.render("X", True, (255,255,255))
 #Creating an input box
 input_box = InputBox(0.1*screen_w,screen_h/2, 0.8*screen_w, 40)
-del_box = del_x.get_rect(center=(0.9*screen_w - 45, screen_h/2+20))
+del_box = del_x.get_rect(center=(0.9*screen_w - 25, screen_h/2+20))
 
 def refresh():
     input_box.draw(screen)                                                                                  #Drawing all boxes and text
