@@ -2,7 +2,7 @@
 Using scipy and pygame to create an audio visualiser which uses multiple fast fourier transforms to visualise an audio file.
 
 <b>Dependencies</b>:<ol>
-<li>Python 3.7</li>
+<li>Python 3.7+</li>
 <li>Scipy</li>
 <li>Pygame</li>
 </ol>
@@ -24,5 +24,5 @@ AudioVisualiserGUI.pyw allows for GUI file name input (unfortunately does not su
 AudioVisualiserConsole.py uses a command line for name input 
 
 <b>NOTE: Python only accepts sound files encoded in .wav format</b><br>
-One can use the conole lame.exe application to convert mp3 files to wav files using the following command in the terminal
+One can use the console lame.exe application to convert mp3 files to wav files using the following command in the terminal
 <pre> lame.exe some_mp3.mp3 some_wav.wav</pre>
