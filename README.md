@@ -21,16 +21,20 @@ AudioVisualiserGUI.pyw allows for GUI file name input (unfortunately does not su
 AudioVisualiserGUI.exe (in the release) can be used for people without the required dependencies but doesn't allow customisation :(<br>
 AudioVisualiserConsole.py uses a command line for name input <br>
 
-File path is written relative to the songs_file variable which defaults as '' (meaning the file path is relative to exe/py file)
+File path is written relative to the songs_file variable which defaults as '' (meaning the file path is relative to the main AudioVisualiser file)
 
-<b>NOTE: Python only accepts sound files encoded in .wav format</b><br>
-One can use the console lame.exe application to convert mp3 files to wav files using the following command in the terminal
-<pre> lame.exe some_mp3.mp3 some_wav.wav</pre>
+If no extension of file path is given, the program assumes it to be wav<br>
+If the file path ends with .mp3, the program attempts to convert it with lame
+
+<b>NOTE: Python only natively accepts sound files encoded in .wav format</b><br>
+Download lame.exe and link its path to the AudioVisualiser for mp3 input<br>
+By default, the program looks for lame in the same directory as itself
 
 # Customising the Visualiser
 The first 6 variables can be edited to suit your viewing experience.
 <pre>
-songs_file                   #Directory To Search For Songs :) [the path finding is relative to this]
+songs_file = ''              #Directory To Search For Songs :) [the path finding is relative to this]
+lame_path = 'lame.exe'       #Path to lame.exe
 screen_w                     #Screen Width
 screen_h                     #Screen Height
 percentage_displayed_f       #Percentage of frequencies to show (Removes higher frequencies) Range = [0, 1]
