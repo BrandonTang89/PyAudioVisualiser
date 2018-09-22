@@ -13,6 +13,7 @@ screen_h = 900
 percentage_displayed_f = 0.7        #Percentage of frequencies to show (Removes higher frequencies) Range = [0, 1]
 max_height_percentile = 99.85       #Pecentile of amplitude that fills the entire height of screen Range = (0, 100]
 fftlength = 2048                    #Number of samples per DFT (better to be a power of 2) (higher: > frequency resolution, < time resolution)
+entertainment = False               #Just for aesthetics, centers the lowest frequencies in the centers and higher ones at the end then wraps around
 
 
 class InputBox:                                                                                             #Class for Input Box
@@ -168,6 +169,9 @@ pygame.mixer.music.load(str(music_path))                                        
 pygame.mixer.music.play(1)
 start_time = time.time()                                                                                    #Starts timer immediately after music starts
 
+#Precalulations to make animation smoother
+Sxx_len = len(Sxx)
+rect_width = screen_w/no_of_displayed_f
 done = False
 while not done:
         cur_time = time.time() - start_time
@@ -176,24 +180,27 @@ while not done:
         screen.blit(timer,(10,screen_h - 60))                                                               #Puts timer on screen
         screen.blit(title, (10, screen_h -30))                                                              #Puts sound file name on screen
         
-        main_time_index = cur_time//dt
-        if int(main_time_index) >= len(Sxx):
+        main_time_index = int(cur_time//dt)
+        if (main_time_index) >= Sxx_len:
             pygame.display.quit()
             pygame.mixer.music.stop()
-            done = True
+            break
 
         try:
-            for index, frequency in enumerate(Sxx[int(main_time_index)]):
-                proportion_of_tleft = main_time_index - int(main_time_index)
-                height = max(proportion_of_tleft*frequency + (1- proportion_of_tleft)*Sxx[int(main_time_index)+1][index], 400)
+            for index, frequency in enumerate(Sxx[(main_time_index)]):
+                proportion_of_tleft = main_time_index - (main_time_index)
+                height = max(proportion_of_tleft*frequency + (1- proportion_of_tleft)*Sxx[(main_time_index)+1][index], 2/rect_scale_factor)
                 #Draws rectangles where height combines 2 nearest time bins by proportion for each frequency (height of 2px if no amplitude)
-                
-                pygame.draw.rect(screen, colours[index], pygame.Rect((index+1)*screen_w/no_of_displayed_f, 20, screen_w/no_of_displayed_f, height*rect_scale_factor))
+                if entertainment:
+                    multiplication_factor = 1 if index%2 else -1
+                    pygame.draw.rect(screen, colours[(index*multiplication_factor)%len(colours)], pygame.Rect((screen_w/2+multiplication_factor*0.5*(index+1)*screen_w/no_of_displayed_f), 20, screen_w/no_of_displayed_f, height*rect_scale_factor))
+                else:
+                    pygame.draw.rect(screen, colours[index], pygame.Rect((index+1)*rect_width, 20, rect_width, height*rect_scale_factor))
         except:
             print("Finished/ Error")
             pygame.mixer.music.stop()
             pygame.display.quit()
-
+            break
 
         pygame.display.flip()
         screen.fill((0, 0, 0))
@@ -201,7 +208,6 @@ while not done:
         for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     done = True
-                if done:
                     pygame.display.quit()
                     pygame.mixer.music.stop()
         
