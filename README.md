@@ -13,7 +13,8 @@ Python 3.7+ can be installed from <pre> https://www.python.org/downloads </pre>
 Scipy, Pygame and Pathlib are python libraries which can be installed using pip in the terminal (after downloading python 3.7+)
 <pre> pip install scipy pygame pathlib</pre>
 
-Note: the GUI and exe version only works on windows OS (the command line version can work on linux and OSX)
+Note: the GUI and exe version only works on windows OS <br>
+In the command line version for linux or OSX the file path must be enclosed with "'" quotation marks
 
 # Getting Started
 AudioVisualiserGUI.pyw allows for GUI file name input (unfortunately does not support copy and paste)<br>
