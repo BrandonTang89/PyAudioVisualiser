@@ -6,7 +6,7 @@ import time
 import pygame
 
 #music_file_name = r""
-songs_file = "songs"
+songs_file = ""
 music_file_name = input("Song Title: ")
 if music_file_name[len(music_file_name)-4:] != '.wav':
     music_file_name += '.wav'
