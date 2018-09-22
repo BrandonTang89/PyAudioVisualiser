@@ -19,7 +19,7 @@ Note: The GUI and EXE versions only work (properly) on windows
 
 AudioVisualiserGUI.pyw
 <ul>
-  <li>Dllows for GUI file name input</li>
+  <li>Allows for GUI file name input</li>
   <li>Does not support copy and paste</li>
 </ul>
 
