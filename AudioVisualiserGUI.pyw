@@ -3,9 +3,11 @@ import scipy.io.wavfile
 import scipy.signal
 import time
 import pygame
+from subprocess import call
 from pathlib import Path
 
 songs_file = ''                     #Directory To Search For Songs :) [the path finding is relative to this]
+lame_path = 'lame.exe'              #Path to lame.exe
 screen_w = 1600                     #Screen Width and height in px
 screen_h = 900
 percentage_displayed_f = 0.7        #Percentage of frequencies to show (Removes higher frequencies) Range = [0, 1]
@@ -15,7 +17,7 @@ fftlength = 2048                    #Number of samples per DFT (better to be a p
 
 class InputBox:                                                                                             #Class for Input Box
 
-    def __init__(self, x, y, w, h, text='Enter Music File Name'):
+    def __init__(self, x, y, w, h, text='Enter Music File Path'):
         self.rect = pygame.Rect(x, y, w, h)
         self.color = COLOR_INACTIVE
         self.text = text
@@ -28,8 +30,9 @@ class InputBox:                                                                 
             if self.rect.collidepoint(event.pos):
                 # Toggle the active variable.
                 self.active = not self.active
-                self.text = ''
-                self.txt_surface = FONT.render(self.text, True, self.color)
+                if self.text == 'Enter Music File Path':
+                    self.text = ''
+                
             else:
                 self.active = False
                 
@@ -40,25 +43,29 @@ class InputBox:                                                                 
                 if event.key == pygame.K_RETURN:
                     print("Try file path",self.text)
                     music_file_name = self.text
-                    if music_file_name[len(music_file_name)-4:] != '.wav':
-                            music_file_name += '.wav'
     
                     if songs_file != '':
-                        music_path = Path(songs_file + "//" + music_file_name)
+                        music_path = (songs_file + "//" + music_file_name)
                     else:
-                        music_path = Path(music_file_name)
-                                          
-                    if music_path.is_file():
-                        self.text = 'File Found!'
-                        self.txt_surface = FONT.render(self.text, True, self.color)
-                        self.draw(screen)
-                        pygame.display.flip()
+                        music_path = (music_file_name)
+
+                    if music_path[len(music_path)-4:] == '.mp3' and Path(lame_path).is_file():             #if mp3, convert if possible   
+                            self.text = 'Attempting to convert mp3 file into wav'
+                            refresh()
+                            
+                            call(["lame", "--decode", music_path, music_path[:len(music_path)-4]+'.wav'], shell=True)
+                            music_path = music_path[:len(music_path)-4]+'.wav'
+                    elif music_path[len(music_path)-4:] != '.wav':
+                            music_path += '.wav'
+                        
+                    music_path = Path(music_path)
+                    if music_path.is_file():                                                                #if file is wav
+                        self.text = 'File Found! Now Loading...'
+                        refresh()
                         return (True, music_path,music_file_name)
                     else:
                         self.text = 'Invalid File'
-                        self.txt_surface = FONT.render(self.text, True, self.color)
-                        self.draw(screen)
-                        pygame.display.flip()
+                        refresh()
                         return (False, '', '')
                     
                 elif event.key == pygame.K_BACKSPACE:
@@ -69,16 +76,12 @@ class InputBox:                                                                 
                 self.txt_surface = FONT.render(self.text, True, self.color)
         return (False, '','')
 
-    def update(self):
-        # Resize the box if the text is too long.
-        width = max(200, self.txt_surface.get_width()+10)
-        self.rect.w = width
-
     def draw(self, screen):
         # Blit the text.
-        screen.blit(self.txt_surface, (self.rect.x+5, self.rect.y+5))
+        self.txt_surface = FONT.render(self.text, True, self.color)
+        screen.blit(self.txt_surface, (self.rect.x+5, self.rect.y+10))
         # Blit the rect.
-        pygame.draw.rect(screen, self.color, self.rect, 2)
+        pygame.draw.rect(screen, self.color, self.rect, 2+self.active*2)
 
 
 #PREPARING PYGAME ENVT
@@ -102,28 +105,37 @@ logo_rect = logo.get_rect(center=(screen_w/2, screen_h/4))
 instruction = myfont.render("Enter Soundfile Path", True, (0,250,250))
 instruction_rect = instruction.get_rect(center=(screen_w/2, 2*screen_h/5))
 
-
+del_x = myfont.render("X", True, (255,255,255))
 #Creating an input box
-input_box = InputBox(0.1*screen_w, int(screen_h/2), 0.8*screen_w, 32)
+input_box = InputBox(0.1*screen_w,screen_h/2, 0.8*screen_w, 40)
+del_box = del_x.get_rect(center=(0.9*screen_w - 45, screen_h/2+20))
 
+def refresh():
+    input_box.draw(screen)                                                                                  #Drawing all boxes and text
+    screen.blit(del_x, del_box)
+    screen.blit(logo, logo_rect)
+    screen.blit(instruction, instruction_rect)
+    pygame.display.flip()
+    screen.fill((30, 30, 30))
 #Starting Screen
 done = False
 while not done:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 done = True
-            try:
+                pygame.display.quit()
+
+            try:                                                                                            #Protect agasint crashing due to char input
                 done,music_path,music_file_name = input_box.handle_event(event)
+                del_x = myfont.render("X", True, COLOR_ACTIVE if input_box.active else COLOR_INACTIVE)      #Colour of del x follows colour of input box
             except:
                 continue
-        input_box.draw(screen)
 
-        screen.blit(logo, logo_rect)
-        screen.blit(instruction, instruction_rect)
-
-        pygame.display.flip()
-        screen.fill((30, 30, 30))
-
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if del_box.collidepoint(event.pos):                                                         #If the user clicked on the delete box / x 
+                    input_box.text = ''
+            refresh()
+        
 #CALCULATION----------------------------------------------------------------------------
 try:
     sr, original_signal = scipy.io.wavfile.read(music_path)
@@ -132,10 +144,10 @@ except:
 
 print("Found File")
 print("Stereo to Mono Conversion")
-music = scipy.mean(original_signal, axis=1)                                                                 #Combining both ears (computationally intensive)
+music = scipy.mean(original_signal, axis=1)                                                                 #Combining both channels by averaging
 
-print('Fourier Transform')                                                                                  #f, t are axis, Sxx is 2d array
-f, t, Sxx = scipy.signal.spectrogram(music, sr,nperseg=fftlength)                                                #Sxx[frequency][time]
+print('Fourier Transform')                                                                                  #f, t are axis, Sxx is 2D array
+f, t, Sxx = scipy.signal.spectrogram(music, sr,nperseg=fftlength)                                           #Sxx[frequency][time]
 no_of_displayed_f = int(len(f)*percentage_displayed_f+0.5)
 Sxx = Sxx[:no_of_displayed_f-2].transpose()                                                                 #Sxx[time][frequency] Last Frequency at 10163.671875
 f = f[:no_of_displayed_f-2]
