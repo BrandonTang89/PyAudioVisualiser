@@ -10,7 +10,7 @@ Using scipy and pygame to create an audio visualiser which uses multiple fast fo
 
 Python 3.7+ can be installed from <pre> https://www.python.org/downloads </pre>
 
-Scipy, Pygame and pathlib are python libraries which can be installed using pip in the terminal (after downloading python 3.7+)
+Scipy, Pygame and Pathlib are python libraries which can be installed using pip in the terminal (after downloading python 3.7+)
 <pre> pip install scipy pygame pathlib</pre>
 
 Note: the GUI and exe version only works on windows OS (the console can work on linux and OSX)
