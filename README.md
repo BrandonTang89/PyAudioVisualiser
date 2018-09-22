@@ -9,7 +9,7 @@ Using scipy and pygame to create an audio visualiser which uses multiple fast fo
 
 Python 3.7+ can be installed from <pre> https://www.python.org/downloads </pre>
 
-Scipy and Pygame can be installed using pip (after downloading python 3.7+)
+Scipy and Pygame can be installed using pip in the terminal (after downloading python 3.7+)
 <pre> pip install scipy pygame</pre>
 
 This program has only been tested on windows thus far
