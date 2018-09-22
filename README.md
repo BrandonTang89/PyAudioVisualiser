@@ -16,18 +16,18 @@ Scipy, Pygame and Pathlib are python libraries which can be installed using pip 
 Note: The GUI and EXE versions only work (properly) on windows
 # Getting Started
 <b>Variations</b>
-
 AudioVisualiserGUI.pyw
 <ul>
   <li>Allows for GUI file name input</li>
   <li>Does not support copy and paste</li>
 </ul>
 
-AudioVisualiserGUI.exe 
+AudioVisualiserGUI.exe and AudioVisualiserGUI_Entertainment.exe
 <ul>
   <li>Available in the release</li>
   <li>Can be used without the required dependencies (apart from lame.exe for mp3 input)</li>
   <li>Doesn't allow customisation of variables :( </li>
+  <li>Entertainment version centers the bars to make it look nicer </li>
  </ul>
  
 AudioVisualiserConsole.py
@@ -47,7 +47,7 @@ Download lame.exe and link its path to the AudioVisualiser for mp3 input.<br>
 By default, the program looks for lame in the same directory as itself.
 
 # Customising the Visualiser
-The first 7 variables can be edited to suit your viewing experience.
+The first 8 variables can be edited to suit your viewing experience.
 <pre>
 songs_file = ''              #Directory To Search For Songs :) [the path finding is relative to this]
 lame_path = 'lame.exe'       #Path to lame.exe
@@ -57,5 +57,7 @@ percentage_displayed_f       #Percentage of frequencies to show (Removes higher 
 max_height_percentile        #Pecentile of amplitude that fills the entire height of screen Range = (0, 100]
 fftlength                    #Number of samples per DFT (better to be a power of 2) 
                              #Longer fftlength results in greater frequency resolution but worse time resolution
+entertainment                #Just for aesthetics
+                             #Centers the lowest frequencies in the centers and higher ones at the end then wraps around
 </pre>
 
