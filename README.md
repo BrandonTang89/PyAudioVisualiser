@@ -20,5 +20,5 @@ fftlength                    #Number of samples per DFT (better to be a power of
 
 File path is written relative to the songs_file <br>(which defaults as '' meaning the file path is relative to the audio visualiser GUI.py file)
 
-AudioVisualiserGUI.pyw contains a gui file name input (unfortunately does not support copy and paste)
+AudioVisualiserGUI.pyw allows for GUI file name input (unfortunately does not support copy and paste)
 AudioVisualiserConsole.py uses a command line for name input 
