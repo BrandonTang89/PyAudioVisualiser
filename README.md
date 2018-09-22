@@ -13,28 +13,26 @@ Python 3.7+ can be installed from <pre> https://www.python.org/downloads </pre>
 Scipy, Pygame and Pathlib are python libraries which can be installed using pip in the terminal (after downloading python 3.7+)
 <pre> pip install scipy pygame pathlib</pre>
 
-Note: the GUI and exe version only works on windows OS <br>
-In the command line version for linux or OSX the file path must be enclosed with quotation marks.
-
 # Getting Started
 <b>Variations</b>
 
 AudioVisualiserGUI.pyw
 <ul>
-  <li>allows for GUI file name input</li>
-  <li>does not support copy and paste</li>
+  <li>Dllows for GUI file name input</li>
+  <li>Does not support copy and paste</li>
 </ul>
 
 AudioVisualiserGUI.exe 
 <ul>
   <li>Available in the release</li>
   <li>Can be used without the required dependencies</li>
-  <li>doesn't allow customisation of variables :( </li>
+  <li>Doesn't allow customisation of variables :( </li>
  </ul>
  
 AudioVisualiserConsole.py
 <ul>
-  <li>uses a command line for name input</li>
+  <li>Uses a command line for name input</li>
+  <li>Works with linux and OS X (file path must be enclosed with quotation marks)</li>
 </ul>
 
 <b>Writing Filepath</b><br>
@@ -48,7 +46,7 @@ Download lame.exe and link its path to the AudioVisualiser for mp3 input.<br>
 By default, the program looks for lame in the same directory as itself.
 
 # Customising the Visualiser
-The first 6 variables can be edited to suit your viewing experience.
+The first 7 variables can be edited to suit your viewing experience.
 <pre>
 songs_file = ''              #Directory To Search For Songs :) [the path finding is relative to this]
 lame_path = 'lame.exe'       #Path to lame.exe
