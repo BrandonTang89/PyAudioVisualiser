@@ -58,6 +58,6 @@ max_height_percentile        #Pecentile of amplitude that fills the entire heigh
 fftlength                    #Number of samples per DFT (better to be a power of 2) 
                              #Longer fftlength results in greater frequency resolution but worse time resolution
 entertainment                #Just for aesthetics
-                             #Centers the lowest frequencies in the centers and higher ones at the end then wraps around
+                             #Centers the lowest frequencies in the centers and higher ones at the end
 </pre>
 
