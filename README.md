@@ -1,6 +1,6 @@
 # pyaudiovisualiser
 Using scipy and pygame to create an audio visualiser which uses multiple fast fourier transforms to visualise an audio file.
-<h1>Getting Started</h1><br>
+<h2>Getting Started</h2><br>
 <b>Variations</b><br>
 AudioVisualiserGUI.pyw
 <ul>
@@ -47,7 +47,7 @@ Scipy, Pygame and Pathlib are python libraries which can be installed using pip 
 Note: The GUI and EXE versions only work (properly) on windows
 
 
-# Customising the Visualiser
+<h2>Customising the Visualiser</h2>
 The first 8 variables can be edited to suit your viewing experience.
 <pre>
 songs_file = ''              #Directory To Search For Songs :) [the path finding is relative to this]
