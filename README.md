@@ -1,20 +1,6 @@
 # pyaudiovisualiser
 Using scipy and pygame to create an audio visualiser which uses multiple fast fourier transforms to visualise an audio file.
-
-<b>Dependencies</b>:<ol>
-  <li>Python 3.7+</li>
-  <li>Scipy</li>
-  <li>Pygame</li>
-  <li>Pathlib</li>
-</ol>
-
-Python 3.7+ can be installed from <pre> https://www.python.org/downloads </pre>
-
-Scipy, Pygame and Pathlib are python libraries which can be installed using pip in the terminal (after downloading python 3.7+)
-<pre> pip install scipy pygame pathlib</pre>
-
-Note: The GUI and EXE versions only work (properly) on windows
-# Getting Started
+<h1>Getting Started</h1><br>
 <b>Variations</b><br>
 AudioVisualiserGUI.pyw
 <ul>
@@ -45,6 +31,21 @@ If the file path ends with .mp3, the program attempts to convert it with lame.
 <b>NOTE: Python only natively accepts sound files encoded in .wav format</b><br>
 Download lame.exe and link its path to the AudioVisualiser for mp3 input.<br>
 By default, the program looks for lame in the same directory as itself.
+
+<b>Dependencies for.py version</b>:<ol>
+  <li>Python 3.7+</li>
+  <li>Scipy</li>
+  <li>Pygame</li>
+  <li>Pathlib</li>
+</ol>
+
+Python 3.7+ can be installed from <pre> https://www.python.org/downloads </pre>
+
+Scipy, Pygame and Pathlib are python libraries which can be installed using pip in the terminal (after downloading python 3.7+)
+<pre> pip install scipy pygame pathlib</pre>
+
+Note: The GUI and EXE versions only work (properly) on windows
+
 
 # Customising the Visualiser
 The first 8 variables can be edited to suit your viewing experience.
