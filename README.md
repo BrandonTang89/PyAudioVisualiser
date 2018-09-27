@@ -1,4 +1,4 @@
-# pyaudiovisualiser
+# PyAudioVisualiser
 Using scipy and pygame to create an audio visualiser which uses multiple consecutive fast fourier transforms to visualise an audio file.<br>
 Each fast fourier transform decomposes an interval of the audio signal into its constituent frequencies.<br>
 
