@@ -15,7 +15,7 @@ Scipy, Pygame and Pathlib are python libraries which can be installed using pip 
 
 Note: The GUI and EXE versions only work (properly) on windows
 # Getting Started
-<b>Variations</b>
+<b>Variations</b><br>
 AudioVisualiserGUI.pyw
 <ul>
   <li>Allows for GUI file name input</li>
